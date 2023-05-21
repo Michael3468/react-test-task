@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 
 import { TPost } from '../types';
 
-const Post: FC<TPost> = ({ post }) => {
+const Post: FC<TPost> = ({ title, userImg, body, comments }) => {
   const [isCommentsVisible, setIsCommentsVisible] = useState<boolean>(false);
 
   const toggleComments = () => {
@@ -11,9 +11,9 @@ const Post: FC<TPost> = ({ post }) => {
 
   return (
     <div>
-      <h2>{post.title}</h2>
-      <img src={post.userImg} alt="user image" />
-      <p>{post.text}</p>
+      <h2>{title}</h2>
+      <img src={userImg} alt="user image" />
+      <p>{body}</p>
 
       <button type="button" onClick={() => toggleComments()}>
         Comments
@@ -21,7 +21,7 @@ const Post: FC<TPost> = ({ post }) => {
 
       {isCommentsVisible && (
         <div>
-          {post.comments.map((comment) => (
+          {comments.map((comment) => (
             <div>
               <h4>{comment.title}</h4>
               <p>{comment.text}</p>

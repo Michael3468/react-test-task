@@ -6,7 +6,7 @@ const initialState: TPostState = {
   error: null,
 };
 
-export default (action: TPostActions, state = initialState) => {
+export default (state = initialState, action: TPostActions = { type: '' }) => {
   switch (action.type) {
     case PostTypes.FETCH_POST_REQUEST:
       return {

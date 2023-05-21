@@ -1,7 +1,21 @@
 /* eslint-disable import/prefer-default-export */
+type TComment = {
+  title: string;
+  text: string;
+};
+
+type TPost = {
+  userId: number;
+  id: number;
+  title: string;
+  userImg: string;
+  body: string;
+  comments: TComment[];
+};
+
 type TPostState = {
   pending: boolean;
-  posts: [];
+  posts: TPost[];
   error: Error | null;
 };
 
@@ -9,20 +23,6 @@ const PostTypes = {
   FETCH_POST_REQUEST: 'FETCH_POST_REQUEST',
   FETCH_POST_SUCCESS: 'FETCH_POST_SUCCESS',
   FETCH_POST_FAILURE: 'FETCH_POST_FAILURE',
-};
-
-type TComment = {
-  title: string;
-  text: string;
-};
-
-type TPost = {
-  post: {
-    title: string;
-    userImg: string;
-    text: string;
-    comments: TComment[];
-  };
 };
 
 type TPostActions = {
