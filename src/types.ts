@@ -31,7 +31,39 @@ type TPostActions = {
     posts: TPost[];
     error?: string;
   };
-}
+};
 
-export type { TPostState, TPost, TPostActions };
+type TFetchPostRequest = {
+  type: typeof PostTypes.FETCH_POST_REQUEST;
+};
+
+type TFetchPostSuccessPayload = {
+  posts: TPost[];
+};
+
+type TFetchPostFailurePayload = {
+  error: string;
+};
+
+type TFetchPostSuccess = {
+  type: typeof PostTypes.FETCH_POST_SUCCESS;
+  payload: TFetchPostSuccessPayload;
+};
+
+type TFetchPostFailure = {
+  type: typeof PostTypes.FETCH_POST_FAILURE;
+  payload: TFetchPostFailurePayload;
+};
+
+export type {
+  TPostState,
+  TPost,
+  TPostActions,
+  TFetchPostRequest,
+  TFetchPostSuccess,
+  TFetchPostSuccessPayload,
+  TFetchPostFailure,
+  TFetchPostFailurePayload,
+};
+
 export { PostTypes };
