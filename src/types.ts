@@ -8,9 +8,8 @@ type TPost = {
   userId: number;
   id: number;
   title: string;
-  userImg: string;
   body: string;
-  comments: TComment[];
+  comments: TComment[]; // TODO: remove
 };
 
 type TPostState = {

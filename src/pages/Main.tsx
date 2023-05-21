@@ -26,7 +26,6 @@ const Main = () => {
           id={post.id}
           userId={post.userId}
           title={post.title}
-          userImg={post.userImg}
           body={post.body}
           comments={post.comments}
         />

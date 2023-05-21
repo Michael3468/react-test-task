@@ -1,8 +1,9 @@
 import { FC, useState } from 'react';
 
+import { avatar } from '../assets';
 import { TPost } from '../types';
 
-const Post: FC<TPost> = ({ title, userImg, body, comments }) => {
+const Post: FC<TPost> = ({ title, body, comments }) => {
   const [isCommentsVisible, setIsCommentsVisible] = useState<boolean>(false);
 
   const toggleComments = () => {
@@ -12,7 +13,7 @@ const Post: FC<TPost> = ({ title, userImg, body, comments }) => {
   return (
     <div>
       <h2>{title}</h2>
-      <img src={userImg} alt="user image" />
+      <img src={avatar} alt="user image" />
       <p>{body}</p>
 
       <button type="button" onClick={() => toggleComments()}>
