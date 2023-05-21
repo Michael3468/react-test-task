@@ -15,22 +15,15 @@ const Main = () => {
   }, [dispatch]);
 
   return (
-    <section>
+    <main>
       {/* TODO: add Loader component */}
       {pending && <div>Loading...</div>}
-      {error && <div>{error.message}</div>}
+      {error && <div>{`error: ${error}`}</div>}
 
       {posts?.map((post: TPost) => (
-        <Post
-          key={post.id}
-          id={post.id}
-          userId={post.userId}
-          title={post.title}
-          body={post.body}
-          comments={post.comments}
-        />
+        <Post key={post.id} id={post.id} userId={post.userId} title={post.title} body={post.body} />
       ))}
-    </section>
+    </main>
   );
 };
 

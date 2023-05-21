@@ -1,7 +1,10 @@
 /* eslint-disable import/prefer-default-export */
 type TComment = {
-  title: string;
-  text: string;
+  postId: number;
+  id: number;
+  name: string;
+  body: string;
+  email: string;
 };
 
 type TPost = {
@@ -9,19 +12,31 @@ type TPost = {
   id: number;
   title: string;
   body: string;
-  comments: TComment[]; // TODO: remove
 };
 
 type TPostState = {
   pending: boolean;
   posts: TPost[];
-  error: Error | null;
+  error: string | null;
 };
 
+type TCommentState = {
+  pending: false;
+  comments: TComment[];
+  error: string | null;
+};
+
+// TODO: move to constants and rename to _POSTS_
 const PostTypes = {
   FETCH_POST_REQUEST: 'FETCH_POST_REQUEST',
   FETCH_POST_SUCCESS: 'FETCH_POST_SUCCESS',
   FETCH_POST_FAILURE: 'FETCH_POST_FAILURE',
+};
+
+const CommentsTypes = {
+  FETCH_COMMENTS_REQUEST: 'FETCH_COMMENTS_REQUEST',
+  FETCH_COMMENTS_SUCCESS: 'FETCH_COMMENTS_SUCCESS',
+  FETCH_COMMENTS_FAILURE: 'FETCH_COMMENTS_FAILURE',
 };
 
 type TPostActions = {
@@ -32,6 +47,15 @@ type TPostActions = {
   };
 };
 
+type TCommentActions = {
+  type: string;
+  payload?: {
+    comments: TComment[];
+    error?: string;
+  };
+};
+
+// Fetch Posts
 type TFetchPostRequest = {
   type: typeof PostTypes.FETCH_POST_REQUEST;
 };
@@ -54,15 +78,47 @@ type TFetchPostFailure = {
   payload: TFetchPostFailurePayload;
 };
 
+// Fetch Comments
+type TFetchCommentsRequest = {
+  type: typeof CommentsTypes.FETCH_COMMENTS_REQUEST;
+  id: number;
+};
+
+type TFetchCommentsSuccessPayload = {
+  comments: TComment[];
+};
+
+type TFetchCommentsFailurePayload = {
+  error: string;
+};
+
+type TFetchCommentsSuccess = {
+  type: typeof CommentsTypes.FETCH_COMMENTS_SUCCESS;
+  payload: TFetchCommentsSuccessPayload;
+};
+
+type TFetchCommentsFailure = {
+  type: typeof CommentsTypes.FETCH_COMMENTS_FAILURE;
+  payload: TFetchCommentsFailurePayload;
+};
+
 export type {
-  TPostState,
+  TComment,
   TPost,
+  TPostState,
+  TCommentState,
   TPostActions,
+  TCommentActions,
   TFetchPostRequest,
   TFetchPostSuccess,
   TFetchPostSuccessPayload,
   TFetchPostFailure,
   TFetchPostFailurePayload,
+  TFetchCommentsRequest,
+  TFetchCommentsSuccess,
+  TFetchCommentsSuccessPayload,
+  TFetchCommentsFailure,
+  TFetchCommentsFailurePayload,
 };
 
-export { PostTypes };
+export { PostTypes, CommentsTypes };

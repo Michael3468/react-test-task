@@ -4,7 +4,7 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { PostTypes } from '../../types';
 import { fetchPostFailure, fetchPostSuccess } from '../actions/postActions';
 
-const getPosts = async () => axios.get('https://jsonplaceholder.typicode.com/posts');
+const getPosts = () => axios.get('https://jsonplaceholder.typicode.com/posts');
 
 function* fetchPostsSaga() {
   try {
