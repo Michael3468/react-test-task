@@ -1,18 +1,6 @@
 import { FC, useState } from 'react';
 
-type Comment = {
-  title: string;
-  text: string;
-};
-
-type TPost = {
-  post: {
-    title: string;
-    userImg: string;
-    text: string;
-    comments: Comment[];
-  };
-};
+import { TPost } from '../types';
 
 const Post: FC<TPost> = ({ post }) => {
   const [isCommentsVisible, setIsCommentsVisible] = useState<boolean>(false);
