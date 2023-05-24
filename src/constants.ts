@@ -16,4 +16,8 @@ const CommentsTypes = {
   FETCH_COMMENTS_FAILURE: 'FETCH_COMMENTS_FAILURE',
 };
 
-export { routes, PostTypes, CommentsTypes };
+const aboutMe = {
+  email: 'mikhail3468@yandex.ru',
+};
+
+export { routes, PostTypes, CommentsTypes, aboutMe };

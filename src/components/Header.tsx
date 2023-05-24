@@ -5,7 +5,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Link } from 'react-router-dom';
 
 import { avatar } from '../assets';
-import { routes } from '../constants';
+import { aboutMe, routes } from '../constants';
 
 const Header = () => {
   // expand variants - false, 'sm', 'md', 'lg', 'xl', 'xxl'
@@ -29,7 +29,11 @@ const Header = () => {
   return (
     <Navbar bg="dark" expand={expand} className="mb-3">
       <Container fluid>
-        <Link to={routes.HOME} className="navbar-brand" style={{ color: 'white', paddingLeft: padding }}>
+        <Link
+          to={routes.HOME}
+          className="navbar-brand"
+          style={{ color: 'white', paddingLeft: padding }}
+        >
           {caption}
         </Link>
         <Navbar.Toggle
@@ -48,6 +52,7 @@ const Header = () => {
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1">
+              {/* TODO: map */}
               <Link
                 to={routes.HOME}
                 onClick={handleClick}
@@ -78,8 +83,8 @@ const Header = () => {
                 </span>
               </div>
 
-              <a style={styles} href="mailto:mikhail3468@yandex.ru">
-                mikhail3468@yandex.ru
+              <a style={styles} href={`mailto:${aboutMe.email}`}>
+                {aboutMe.email}
               </a>
             </Nav>
           </Offcanvas.Body>
