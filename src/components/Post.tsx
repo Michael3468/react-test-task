@@ -25,7 +25,7 @@ const Post: FC<TPost> = ({ id, userId, title, body }) => {
   };
 
   return (
-    <article>
+    <article className="mb-5">
       <h2>{title}</h2>
       {/* TODO: "img" move to component ? */}
       <img
@@ -36,7 +36,7 @@ const Post: FC<TPost> = ({ id, userId, title, body }) => {
       />
       <p>{body}</p>
 
-      <button type="button" onClick={() => toggleComments()}>
+      <button className="mb-3" type="button" onClick={() => toggleComments()}>
         Comments
       </button>
 
