@@ -10,6 +10,7 @@ const Header = () => {
   // expand variants - false, 'sm', 'md', 'lg', 'xl', 'xxl'
   const expand = 'sm';
   const styles = { marginLeft: 'auto', marginRight: 'auto', marginBottom: 20 };
+  const caption = 'React Redux Saga';
 
   const handleClick = () => {
     const closeButton = document.querySelector('.btn-close') as HTMLButtonElement;
@@ -20,7 +21,7 @@ const Header = () => {
     <Navbar bg="dark" expand={expand} className="mb-3">
       <Container fluid>
         <Link to="/" className="navbar-brand" style={{ color: 'white' }}>
-          React Redux Saga
+          {caption}
         </Link>
         <Navbar.Toggle
           style={{ borderColor: 'white' }}
@@ -33,7 +34,7 @@ const Header = () => {
         >
           <Offcanvas.Header closeButton>
             <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-              React Redux Saga
+              {caption}
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
