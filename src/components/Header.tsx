@@ -19,9 +19,9 @@ const Header = () => {
   return (
     <Navbar bg="dark" expand={expand} className="mb-3">
       <Container fluid>
-        <Navbar.Brand href="#" style={{ color: 'white' }}>
+        <Link to="/" className="navbar-brand" style={{ color: 'white' }}>
           React Redux Saga
-        </Navbar.Brand>
+        </Link>
         <Navbar.Toggle
           style={{ borderColor: 'white' }}
           aria-controls={`offcanvasNavbar-expand-${expand}`}
