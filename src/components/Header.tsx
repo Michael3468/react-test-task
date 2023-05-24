@@ -8,8 +8,15 @@ import { avatar } from '../assets';
 
 const Header = () => {
   // expand variants - false, 'sm', 'md', 'lg', 'xl', 'xxl'
-  const expand = 'sm';
-  const styles = { marginLeft: 'auto', marginRight: 'auto', marginBottom: 20 };
+  const expand = 'md';
+  const styles = {
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginTop: 10,
+    marginBottom: 10,
+    display: 'flex',
+    alignItems: 'center',
+  };
   const caption = 'React Redux Saga';
 
   const handleClick = () => {
