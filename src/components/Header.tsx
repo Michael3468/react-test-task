@@ -61,11 +61,19 @@ const Header = () => {
                 About Me
               </Link>
               {/* TODO: userInfo component */}
-              <img
-                src={avatar}
-                alt="avatar"
-                style={{ ...styles, width: 50, height: 50, borderRadius: '50%' }}
-              />
+              <div
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}
+              >
+                <img
+                  src={avatar}
+                  alt="avatar"
+                  style={{ ...styles, width: 50, height: 50, borderRadius: '50%' }}
+                />
+                <span className="ms-md-3" style={{ ...styles, color: 'black' }}>
+                  Mikhail
+                </span>
+              </div>
+
               <a style={styles} href="mailto:mikhail3468@yandex.ru">
                 mikhail3468@yandex.ru
               </a>
