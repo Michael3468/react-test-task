@@ -11,6 +11,11 @@ const Header = () => {
   const expand = 'sm';
   const styles = { marginLeft: 'auto', marginRight: 'auto', marginBottom: 20 };
 
+  const handleClick = () => {
+    const closeButton = document.querySelector('.btn-close') as HTMLButtonElement;
+    closeButton?.click();
+  };
+
   return (
     <Navbar bg="dark" expand={expand} className="mb-3">
       <Container fluid>
@@ -33,10 +38,18 @@ const Header = () => {
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className="justify-content-center flex-grow-1 pe-3">
-              <Link to="/" style={{ ...styles, textDecoration: 'none', color: 'black' }}>
+              <Link
+                to="/"
+                onClick={handleClick}
+                style={{ ...styles, textDecoration: 'none', color: 'black' }}
+              >
                 Posts
               </Link>
-              <Link to="/about-me" style={{ ...styles, textDecoration: 'none', color: 'black' }}>
+              <Link
+                to="/about-me"
+                onClick={handleClick}
+                style={{ ...styles, textDecoration: 'none', color: 'black' }}
+              >
                 About Me
               </Link>
               {/* TODO: userInfo component */}
