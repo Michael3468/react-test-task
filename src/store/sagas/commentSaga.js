@@ -11,7 +11,7 @@ function* fetchCommentsSaga(action) {
     const response = yield call(() => getComments(action.id));
 
     yield delay(500);
-    yield put(fetchCommentsSuccess({ comments: response.data }));
+    yield put(fetchCommentsSuccess({ comments: { data: response.data, postId: action.id } }));
   } catch (error) {
     yield put(fetchCommentsFailure({ error: error.message }));
   }

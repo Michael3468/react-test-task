@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -6,7 +6,7 @@ import { avatar } from '../assets';
 import { routes } from '../constants';
 import { fetchCommentsRequest } from '../store/actions/commentsActions';
 import { RootState } from '../store/reducers/rootReducer';
-import { TCommentState, TPost } from '../types';
+import { TComment, TCommentState, TPost } from '../types';
 import Comment from './Comment';
 
 const Post: FC<TPost> = ({ id, userId, title, body }) => {
@@ -16,6 +16,7 @@ const Post: FC<TPost> = ({ id, userId, title, body }) => {
   const { pending, comments, error } = useSelector(
     (state: RootState) => state.comments,
   ) as TCommentState;
+  const [postComments, setPostComments] = useState<TComment[]>([]);
 
   const navigate = useNavigate();
 
@@ -23,6 +24,12 @@ const Post: FC<TPost> = ({ id, userId, title, body }) => {
     setIsCommentsVisible((prev) => !prev);
     dispatch(fetchCommentsRequest(id));
   };
+
+  useEffect(() => {
+    if (comments.postId === id) {
+      setPostComments(comments.data);
+    }
+  }, [comments, id]);
 
   return (
     <article className="mb-5" style={{ border: '1px solid black', borderRadius: 5, padding: 20 }}>
@@ -44,11 +51,11 @@ const Post: FC<TPost> = ({ id, userId, title, body }) => {
 
       {isCommentsVisible && (
         <section>
-          {!comments.length && pending && <div>Loading...</div>}
+          {!postComments.length && pending && <div>Loading...</div>}
           {/* TODO: add modal for error ? */}
           {error && <div>{`error: ${error}`}</div>}
 
-          {comments?.map((comment) => (
+          {postComments?.map((comment) => (
             <Comment
               key={comment.id}
               id={comment.id}
