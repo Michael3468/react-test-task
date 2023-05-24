@@ -1,4 +1,5 @@
-import { TPostState, PostTypes, TPostActions } from '../../types';
+import { PostTypes } from '../../constants';
+import { TPostState, TPostActions } from '../../types';
 
 const initialState: TPostState = {
   pending: false,

@@ -1,5 +1,5 @@
+import { PostTypes } from '../../constants';
 import {
-  PostTypes,
   TFetchPostFailure,
   TFetchPostFailurePayload,
   TFetchPostRequest,

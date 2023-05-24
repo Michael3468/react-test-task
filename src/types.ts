@@ -1,4 +1,5 @@
-/* eslint-disable import/prefer-default-export */
+import { CommentsTypes, PostTypes } from './constants';
+
 type TComment = {
   postId: number;
   id: number;
@@ -27,19 +28,6 @@ type TCommentState = {
     postId: number | null;
   };
   error: string | null;
-};
-
-// TODO: move to constants and rename to _POSTS_
-const PostTypes = {
-  FETCH_POST_REQUEST: 'FETCH_POST_REQUEST',
-  FETCH_POST_SUCCESS: 'FETCH_POST_SUCCESS',
-  FETCH_POST_FAILURE: 'FETCH_POST_FAILURE',
-};
-
-const CommentsTypes = {
-  FETCH_COMMENTS_REQUEST: 'FETCH_COMMENTS_REQUEST',
-  FETCH_COMMENTS_SUCCESS: 'FETCH_COMMENTS_SUCCESS',
-  FETCH_COMMENTS_FAILURE: 'FETCH_COMMENTS_FAILURE',
 };
 
 type TPostActions = {
@@ -123,5 +111,3 @@ export type {
   TFetchCommentsFailure,
   TFetchCommentsFailurePayload,
 };
-
-export { PostTypes, CommentsTypes };

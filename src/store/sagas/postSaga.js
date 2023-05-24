@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { all, call, delay, put, takeLatest } from 'redux-saga/effects';
 
-import { PostTypes } from '../../types';
+import { PostTypes } from '../../constants';
 import { fetchPostFailure, fetchPostSuccess } from '../actions/postActions';
 
 const getPosts = () => axios.get('https://jsonplaceholder.typicode.com/posts');

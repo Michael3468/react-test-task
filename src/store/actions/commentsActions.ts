@@ -1,5 +1,5 @@
+import { CommentsTypes } from '../../constants';
 import {
-  CommentsTypes,
   TFetchCommentsFailure,
   TFetchCommentsFailurePayload,
   TFetchCommentsRequest,

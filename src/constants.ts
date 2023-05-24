@@ -4,5 +4,16 @@ const routes = {
   USER_INFO: '/user-info',
 };
 
-// eslint-disable-next-line import/prefer-default-export
-export { routes };
+const PostTypes = {
+  FETCH_POST_REQUEST: 'FETCH_POSTS_REQUEST',
+  FETCH_POST_SUCCESS: 'FETCH_POSTS_SUCCESS',
+  FETCH_POST_FAILURE: 'FETCH_POSTS_FAILURE',
+};
+
+const CommentsTypes = {
+  FETCH_COMMENTS_REQUEST: 'FETCH_COMMENTS_REQUEST',
+  FETCH_COMMENTS_SUCCESS: 'FETCH_COMMENTS_SUCCESS',
+  FETCH_COMMENTS_FAILURE: 'FETCH_COMMENTS_FAILURE',
+};
+
+export { routes, PostTypes, CommentsTypes };
