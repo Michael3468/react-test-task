@@ -9,13 +9,14 @@ import { avatar } from '../assets';
 const Header = () => {
   // expand variants - false, 'sm', 'md', 'lg', 'xl', 'xxl'
   const expand = 'md';
+  const padding = 10;
   const styles = {
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    marginTop: 10,
-    marginBottom: 10,
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
+    marginBottom: 10,
+    padding: `0 ${padding}px`,
   };
   const caption = 'React Redux Saga';
 
@@ -27,11 +28,11 @@ const Header = () => {
   return (
     <Navbar bg="dark" expand={expand} className="mb-3">
       <Container fluid>
-        <Link to="/" className="navbar-brand" style={{ color: 'white' }}>
+        <Link to="/" className="navbar-brand" style={{ color: 'white', paddingLeft: padding }}>
           {caption}
         </Link>
         <Navbar.Toggle
-          style={{ borderColor: 'white' }}
+          style={{ borderColor: 'white', marginRight: padding }}
           aria-controls={`offcanvasNavbar-expand-${expand}`}
         />
         <Navbar.Offcanvas
@@ -45,7 +46,7 @@ const Header = () => {
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
-            <Nav className="justify-content-center flex-grow-1 pe-3">
+            <Nav className="justify-content-end flex-grow-1">
               <Link
                 to="/"
                 onClick={handleClick}
@@ -61,15 +62,17 @@ const Header = () => {
                 About Me
               </Link>
               {/* TODO: userInfo component */}
-              <div
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}
-              >
+              <div style={{ ...styles, display: 'flex', alignItems: 'center' }}>
                 <img
                   src={avatar}
                   alt="avatar"
-                  style={{ ...styles, width: 50, height: 50, borderRadius: '50%' }}
+                  style={{
+                    width: 50,
+                    height: 50,
+                    borderRadius: '50%',
+                  }}
                 />
-                <span className="ms-md-3" style={{ ...styles, color: 'black' }}>
+                <span className="ms-3" style={{ color: 'black' }}>
                   Mikhail
                 </span>
               </div>
