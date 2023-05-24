@@ -22,7 +22,10 @@ type TPostState = {
 
 type TCommentState = {
   pending: false;
-  comments: TComment[];
+  comments: {
+    data: TComment[];
+    postId: number | null;
+  };
   error: string | null;
 };
 
@@ -85,7 +88,7 @@ type TFetchCommentsRequest = {
 };
 
 type TFetchCommentsSuccessPayload = {
-  comments: TComment[];
+  data: TComment[];
 };
 
 type TFetchCommentsFailurePayload = {
