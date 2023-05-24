@@ -2,7 +2,10 @@ import { TCommentState, CommentsTypes, TCommentActions } from '../../types';
 
 const initialState: TCommentState = {
   pending: false,
-  comments: [],
+  comments: {
+    data: [],
+    postId: null,
+  },
   error: null,
 };
 
@@ -11,6 +14,10 @@ export default (state = initialState, action: TCommentActions = { type: '' }) =>
     case CommentsTypes.FETCH_COMMENTS_REQUEST:
       return {
         ...state,
+        comments: {
+          data: [],
+          postId: null,
+        },
         pending: true,
       };
     case CommentsTypes.FETCH_COMMENTS_SUCCESS:
@@ -24,7 +31,10 @@ export default (state = initialState, action: TCommentActions = { type: '' }) =>
       return {
         ...state,
         pending: false,
-        comments: [],
+        comments: {
+          data: [],
+          postId: null,
+        },
         error: action.payload?.error ?? null,
       };
     default:

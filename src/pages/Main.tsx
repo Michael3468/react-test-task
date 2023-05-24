@@ -17,7 +17,7 @@ const Main = () => {
   return (
     <main>
       {/* TODO: add Loader component */}
-      {pending && <div>Loading...</div>}
+      {!posts.length && pending && <div>Loading...</div>}
       {error && <div>{`error: ${error}`}</div>}
 
       {posts?.map((post: TPost) => (
