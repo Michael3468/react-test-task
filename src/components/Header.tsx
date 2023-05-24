@@ -5,6 +5,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Link } from 'react-router-dom';
 
 import { avatar } from '../assets';
+import { routes } from '../constants';
 
 const Header = () => {
   // expand variants - false, 'sm', 'md', 'lg', 'xl', 'xxl'
@@ -28,7 +29,7 @@ const Header = () => {
   return (
     <Navbar bg="dark" expand={expand} className="mb-3">
       <Container fluid>
-        <Link to="/" className="navbar-brand" style={{ color: 'white', paddingLeft: padding }}>
+        <Link to={routes.HOME} className="navbar-brand" style={{ color: 'white', paddingLeft: padding }}>
           {caption}
         </Link>
         <Navbar.Toggle
@@ -48,14 +49,14 @@ const Header = () => {
           <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1">
               <Link
-                to="/"
+                to={routes.HOME}
                 onClick={handleClick}
                 style={{ ...styles, textDecoration: 'none', color: 'black' }}
               >
                 Posts
               </Link>
               <Link
-                to="/about-me"
+                to={routes.ABOUT_ME}
                 onClick={handleClick}
                 style={{ ...styles, textDecoration: 'none', color: 'black' }}
               >
