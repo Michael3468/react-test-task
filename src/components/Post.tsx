@@ -25,16 +25,18 @@ const Post: FC<TPost> = ({ id, userId, title, body }) => {
   };
 
   return (
-    <article className="mb-5">
+    <article className="mb-5" style={{ border: '1px solid black', borderRadius: 5, padding: 20 }}>
       <h2>{title}</h2>
       {/* TODO: "img" move to component ? */}
-      <img
-        src={avatar}
-        alt="user image"
-        onClick={() => navigate(`${routes.USER_INFO}/${userId}`)}
-        style={{ cursor: 'pointer' }}
-      />
-      <p>{body}</p>
+      <div style={{ display: 'flex' }}>
+        <img
+          src={avatar}
+          alt="user image"
+          onClick={() => navigate(`${routes.USER_INFO}/${userId}`)}
+          style={{ cursor: 'pointer', width: 50, height: 50, borderRadius: '50%', marginRight: 20 }}
+        />
+        <p>{body}</p>
+      </div>
 
       <button className="mb-3" type="button" onClick={() => toggleComments()}>
         Comments
