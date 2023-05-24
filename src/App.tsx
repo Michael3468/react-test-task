@@ -14,7 +14,7 @@ const App = () => (
       <Routes>
         <Route path={routes.HOME} Component={Main} />
         <Route path={routes.ABOUT_ME} Component={AboutMe} />
-        <Route path={routes.USER_INFO} Component={UserInfo} />
+        <Route path={`${routes.USER_INFO}/:id`} Component={UserInfo} />
       </Routes>
     </Layout>
   </BrowserRouter>

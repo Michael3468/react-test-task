@@ -1,19 +1,23 @@
 import { FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { avatar } from '../assets';
+import { routes } from '../constants';
 import { fetchCommentsRequest } from '../store/actions/commentsActions';
 import { RootState } from '../store/reducers/rootReducer';
 import { TCommentState, TPost } from '../types';
 import Comment from './Comment';
 
-const Post: FC<TPost> = ({ id, title, body }) => {
+const Post: FC<TPost> = ({ id, userId, title, body }) => {
   const dispatch = useDispatch();
   const [isCommentsVisible, setIsCommentsVisible] = useState<boolean>(false);
   // TODO: change useSelector to useTypedSelector
   const { pending, comments, error } = useSelector(
     (state: RootState) => state.comments,
   ) as TCommentState;
+
+  const navigate = useNavigate();
 
   const toggleComments = () => {
     setIsCommentsVisible((prev) => !prev);
@@ -24,7 +28,12 @@ const Post: FC<TPost> = ({ id, title, body }) => {
     <article>
       <h2>{title}</h2>
       {/* TODO: "img" move to component ? */}
-      <img src={avatar} alt="user image" />
+      <img
+        src={avatar}
+        alt="user image"
+        onClick={() => navigate(`${routes.USER_INFO}/${userId}`)}
+        style={{ cursor: 'pointer' }}
+      />
       <p>{body}</p>
 
       <button type="button" onClick={() => toggleComments()}>
