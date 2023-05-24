@@ -1,4 +1,5 @@
 import { FC, ReactNode } from 'react';
+import Container from 'react-bootstrap/Container';
 
 import Header from './Header';
 
@@ -9,7 +10,7 @@ type Props = {
 const Layout: FC<Props> = ({ children }) => (
   <>
     <Header />
-    {children}
+    <Container>{children}</Container>
   </>
 );
 
