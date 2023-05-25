@@ -1,4 +1,5 @@
-/* eslint-disable import/prefer-default-export */
+import { CommentsTypes, PostsTypes, UserInfoTypes } from './constants';
+
 type TComment = {
   postId: number;
   id: number;
@@ -14,6 +15,30 @@ type TPost = {
   body: string;
 };
 
+type TUserInfo = {
+  id: number | null;
+  name: string;
+  username: string;
+  email: string;
+  address: {
+    street: string;
+    suite: string;
+    city: string;
+    zipcode: string;
+    geo: {
+      lat: number | null;
+      lng: number | null;
+    };
+  };
+  phone: string;
+  website: string;
+  company: {
+    name: string;
+    catchPhrase: string;
+    bs: string;
+  };
+} | null;
+
 type TPostState = {
   pending: boolean;
   posts: TPost[];
@@ -21,7 +46,7 @@ type TPostState = {
 };
 
 type TCommentState = {
-  pending: false;
+  pending: boolean;
   comments: {
     data: TComment[];
     postId: number | null;
@@ -29,17 +54,10 @@ type TCommentState = {
   error: string | null;
 };
 
-// TODO: move to constants and rename to _POSTS_
-const PostTypes = {
-  FETCH_POST_REQUEST: 'FETCH_POST_REQUEST',
-  FETCH_POST_SUCCESS: 'FETCH_POST_SUCCESS',
-  FETCH_POST_FAILURE: 'FETCH_POST_FAILURE',
-};
-
-const CommentsTypes = {
-  FETCH_COMMENTS_REQUEST: 'FETCH_COMMENTS_REQUEST',
-  FETCH_COMMENTS_SUCCESS: 'FETCH_COMMENTS_SUCCESS',
-  FETCH_COMMENTS_FAILURE: 'FETCH_COMMENTS_FAILURE',
+type TUserInfoState = {
+  pending: boolean;
+  user: TUserInfo;
+  error: string | null;
 };
 
 type TPostActions = {
@@ -58,9 +76,18 @@ type TCommentActions = {
   };
 };
 
+type TUserInfoActions = {
+  type: string;
+  payload?: {
+    user: TUserInfo;
+    error?: string;
+  };
+};
+
 // Fetch Posts
 type TFetchPostRequest = {
-  type: typeof PostTypes.FETCH_POST_REQUEST;
+  type: typeof PostsTypes.FETCH_POSTS_REQUEST;
+  userId?: string | null;
 };
 
 type TFetchPostSuccessPayload = {
@@ -72,12 +99,12 @@ type TFetchPostFailurePayload = {
 };
 
 type TFetchPostSuccess = {
-  type: typeof PostTypes.FETCH_POST_SUCCESS;
+  type: typeof PostsTypes.FETCH_POSTS_SUCCESS;
   payload: TFetchPostSuccessPayload;
 };
 
 type TFetchPostFailure = {
-  type: typeof PostTypes.FETCH_POST_FAILURE;
+  type: typeof PostsTypes.FETCH_POSTS_FAILURE;
   payload: TFetchPostFailurePayload;
 };
 
@@ -105,13 +132,40 @@ type TFetchCommentsFailure = {
   payload: TFetchCommentsFailurePayload;
 };
 
+// Fetch UserInfo
+type TFetchUserInfoRequest = {
+  type: typeof UserInfoTypes.FETCH_USER_INFO_REQUEST;
+  userId: string;
+};
+
+type TFetchUserInfoSuccessPayload = {
+  data: TUserInfo;
+};
+
+type TFetchUserInfoFailurePayload = {
+  error: string;
+};
+
+type TFetchUserInfoSuccess = {
+  type: typeof UserInfoTypes.FETCH_USER_INFO_SUCCESS;
+  payload: TFetchUserInfoSuccessPayload;
+};
+
+type TFetchUserInfoFailure = {
+  type: typeof UserInfoTypes.FETCH_USER_INFO_FAILURE;
+  payload: TFetchCommentsFailurePayload;
+};
+
 export type {
   TComment,
   TPost,
+  TUserInfo,
   TPostState,
   TCommentState,
+  TUserInfoState,
   TPostActions,
   TCommentActions,
+  TUserInfoActions,
   TFetchPostRequest,
   TFetchPostSuccess,
   TFetchPostSuccessPayload,
@@ -122,6 +176,9 @@ export type {
   TFetchCommentsSuccessPayload,
   TFetchCommentsFailure,
   TFetchCommentsFailurePayload,
+  TFetchUserInfoRequest,
+  TFetchUserInfoSuccessPayload,
+  TFetchUserInfoFailurePayload,
+  TFetchUserInfoSuccess,
+  TFetchUserInfoFailure,
 };
-
-export { PostTypes, CommentsTypes };

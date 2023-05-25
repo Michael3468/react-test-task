@@ -1,4 +1,5 @@
-import { TCommentState, CommentsTypes, TCommentActions } from '../../types';
+import { CommentsTypes } from '../../constants';
+import { TCommentState, TCommentActions } from '../../types';
 
 const initialState: TCommentState = {
   pending: false,
