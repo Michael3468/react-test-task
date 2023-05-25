@@ -1,4 +1,4 @@
-import { CommentsTypes, PostsTypes } from './constants';
+import { CommentsTypes, PostsTypes, UserInfoTypes } from './constants';
 
 type TComment = {
   postId: number;
@@ -15,6 +15,30 @@ type TPost = {
   body: string;
 };
 
+type TUserInfo = {
+  id: number | null;
+  name: string;
+  username: string;
+  email: string;
+  address: {
+    street: string;
+    suite: string;
+    city: string;
+    zipcode: string;
+    geo: {
+      lat: number | null;
+      lng: number | null;
+    };
+  };
+  phone: string;
+  website: string;
+  company: {
+    name: string;
+    catchPhrase: string;
+    bs: string;
+  };
+} | null;
+
 type TPostState = {
   pending: boolean;
   posts: TPost[];
@@ -22,11 +46,17 @@ type TPostState = {
 };
 
 type TCommentState = {
-  pending: false;
+  pending: boolean;
   comments: {
     data: TComment[];
     postId: number | null;
   };
+  error: string | null;
+};
+
+type TUserInfoState = {
+  pending: boolean;
+  user: TUserInfo;
   error: string | null;
 };
 
@@ -42,6 +72,14 @@ type TCommentActions = {
   type: string;
   payload?: {
     comments: TComment[];
+    error?: string;
+  };
+};
+
+type TUserInfoActions = {
+  type: string;
+  payload?: {
+    user: TUserInfo;
     error?: string;
   };
 };
@@ -93,13 +131,40 @@ type TFetchCommentsFailure = {
   payload: TFetchCommentsFailurePayload;
 };
 
+// Fetch UserInfo
+type TFetchUserInfoRequest = {
+  type: typeof UserInfoTypes.FETCH_USER_INFO_REQUEST;
+  userId: string;
+};
+
+type TFetchUserInfoSuccessPayload = {
+  data: TUserInfo;
+};
+
+type TFetchUserInfoFailurePayload = {
+  error: string;
+};
+
+type TFetchUserInfoSuccess = {
+  type: typeof UserInfoTypes.FETCH_USER_INFO_SUCCESS;
+  payload: TFetchUserInfoSuccessPayload;
+};
+
+type TFetchUserInfoFailure = {
+  type: typeof UserInfoTypes.FETCH_USER_INFO_FAILURE;
+  payload: TFetchCommentsFailurePayload;
+};
+
 export type {
   TComment,
   TPost,
+  TUserInfo,
   TPostState,
   TCommentState,
+  TUserInfoState,
   TPostActions,
   TCommentActions,
+  TUserInfoActions,
   TFetchPostRequest,
   TFetchPostSuccess,
   TFetchPostSuccessPayload,
@@ -110,4 +175,9 @@ export type {
   TFetchCommentsSuccessPayload,
   TFetchCommentsFailure,
   TFetchCommentsFailurePayload,
+  TFetchUserInfoRequest,
+  TFetchUserInfoSuccessPayload,
+  TFetchUserInfoFailurePayload,
+  TFetchUserInfoSuccess,
+  TFetchUserInfoFailure,
 };
