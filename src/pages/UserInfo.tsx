@@ -3,19 +3,27 @@ import { Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 
+import Post from '../components/Post';
+import { fetchPostRequest } from '../store/actions/postActions';
 import { fetchUserInfoRequest } from '../store/actions/userInfoActions';
 import { RootState } from '../store/reducers/rootReducer';
-import { TUserInfo, TUserInfoState } from '../types';
+import { TPost, TPostState, TUserInfo, TUserInfoState } from '../types';
 
 const UserInfo = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [userInfo, setUserInfo] = useState<TUserInfo>(null);
   const { pending, user, error } = useSelector((state: RootState) => state.user) as TUserInfoState;
+  const {
+    pending: postsPending,
+    posts,
+    error: postsError,
+  } = useSelector((state: RootState) => state.posts) as TPostState;
 
   useEffect(() => {
     if (id) {
       dispatch(fetchUserInfoRequest(id));
+      dispatch(fetchPostRequest(id));
     }
   }, [dispatch, id]);
 
@@ -39,6 +47,24 @@ const UserInfo = () => {
           <div>{`City: ${userInfo?.address?.city}`}</div>
         </Card>
       )}
+
+      <button type="button" style={{ margin: '20px 0' }}>
+        Назад
+      </button>
+
+      {postsPending && <div>Loading...</div>}
+      {postsError && <div>{`error: ${error}`}</div>}
+      {!postsPending &&
+        !postsError &&
+        posts?.map((post: TPost) => (
+          <Post
+            key={post.id}
+            id={post.id}
+            userId={post.userId}
+            title={post.title}
+            body={post.body}
+          />
+        ))}
     </>
   );
 };

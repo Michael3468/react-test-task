@@ -7,8 +7,9 @@ import {
   TFetchPostSuccessPayload,
 } from '../../types';
 
-export const fetchPostRequest = (): TFetchPostRequest => ({
+export const fetchPostRequest = (userId: string | null = null): TFetchPostRequest => ({
   type: PostsTypes.FETCH_POSTS_REQUEST,
+  userId,
 });
 
 export const fetchPostSuccess = (payload: TFetchPostSuccessPayload): TFetchPostSuccess => ({

@@ -87,6 +87,7 @@ type TUserInfoActions = {
 // Fetch Posts
 type TFetchPostRequest = {
   type: typeof PostsTypes.FETCH_POSTS_REQUEST;
+  userId?: string | null;
 };
 
 type TFetchPostSuccessPayload = {
