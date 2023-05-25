@@ -4,10 +4,10 @@ const routes = {
   USER_INFO: '/user-info',
 };
 
-const PostTypes = {
-  FETCH_POST_REQUEST: 'FETCH_POSTS_REQUEST',
-  FETCH_POST_SUCCESS: 'FETCH_POSTS_SUCCESS',
-  FETCH_POST_FAILURE: 'FETCH_POSTS_FAILURE',
+const PostsTypes = {
+  FETCH_POSTS_REQUEST: 'FETCH_POSTS_REQUEST',
+  FETCH_POSTS_SUCCESS: 'FETCH_POSTS_SUCCESS',
+  FETCH_POSTS_FAILURE: 'FETCH_POSTS_FAILURE',
 };
 
 const CommentsTypes = {
@@ -20,4 +20,4 @@ const aboutMe = {
   email: 'mikhail3468@yandex.ru',
 };
 
-export { routes, PostTypes, CommentsTypes, aboutMe };
+export { routes, PostsTypes, CommentsTypes, aboutMe };

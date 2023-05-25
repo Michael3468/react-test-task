@@ -1,4 +1,4 @@
-import { CommentsTypes, PostTypes } from './constants';
+import { CommentsTypes, PostsTypes } from './constants';
 
 type TComment = {
   postId: number;
@@ -48,7 +48,7 @@ type TCommentActions = {
 
 // Fetch Posts
 type TFetchPostRequest = {
-  type: typeof PostTypes.FETCH_POST_REQUEST;
+  type: typeof PostsTypes.FETCH_POSTS_REQUEST;
 };
 
 type TFetchPostSuccessPayload = {
@@ -60,12 +60,12 @@ type TFetchPostFailurePayload = {
 };
 
 type TFetchPostSuccess = {
-  type: typeof PostTypes.FETCH_POST_SUCCESS;
+  type: typeof PostsTypes.FETCH_POSTS_SUCCESS;
   payload: TFetchPostSuccessPayload;
 };
 
 type TFetchPostFailure = {
-  type: typeof PostTypes.FETCH_POST_FAILURE;
+  type: typeof PostsTypes.FETCH_POSTS_FAILURE;
   payload: TFetchPostFailurePayload;
 };
 
