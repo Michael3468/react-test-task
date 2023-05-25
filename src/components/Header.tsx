@@ -58,14 +58,14 @@ const Header = () => {
                 onClick={handleClick}
                 style={{ ...styles, textDecoration: 'none', color: 'black' }}
               >
-                Posts
+                Список постов
               </Link>
               <Link
                 to={routes.ABOUT_ME}
                 onClick={handleClick}
                 style={{ ...styles, textDecoration: 'none', color: 'black' }}
               >
-                About Me
+                Обо мне
               </Link>
               {/* TODO: userInfo component */}
               <div style={{ ...styles, display: 'flex', alignItems: 'center' }}>
@@ -79,7 +79,7 @@ const Header = () => {
                   }}
                 />
                 <span className="ms-3" style={{ color: 'black' }}>
-                  Mikhail
+                  Михаил
                 </span>
               </div>
 
