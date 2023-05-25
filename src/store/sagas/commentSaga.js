@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { all, call, delay, put, takeLatest } from 'redux-saga/effects';
 
-import { CommentsTypes } from '../../types';
+import { CommentsTypes } from '../../constants';
 import { fetchCommentsFailure, fetchCommentsSuccess } from '../actions/commentsActions';
 
 const getComments = (id) => axios.get(`https://jsonplaceholder.typicode.com/comments?postId=${id}`);
