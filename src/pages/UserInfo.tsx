@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 
 import Post from '../components/Post';
+import { routes } from '../constants';
 import { fetchPostRequest } from '../store/actions/postActions';
 import { fetchUserInfoRequest } from '../store/actions/userInfoActions';
 import { RootState } from '../store/reducers/rootReducer';
@@ -19,6 +20,8 @@ const UserInfo = () => {
     posts,
     error: postsError,
   } = useSelector((state: RootState) => state.posts) as TPostState;
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id) {
@@ -48,8 +51,8 @@ const UserInfo = () => {
         </Card>
       )}
 
-      <button type="button" style={{ margin: '20px 0' }}>
-        Назад
+      <button type="button" style={{ margin: '20px 0' }} onClick={() => navigate(routes.HOME)}>
+        Go Back
       </button>
 
       {postsPending && <div>Loading...</div>}
