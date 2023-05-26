@@ -28,6 +28,12 @@ const SearchBar: FC<Props> = ({ posts, searchResults, setSearchResults }) => {
     }
   }, [searchValue]);
 
+  useEffect(() => {
+    if (searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, []);
+
   const handleClick = () => {
     setSearchValue('');
     if (searchInputRef.current) {
