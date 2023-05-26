@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { Button, Col, Container, Form, InputGroup, Row } from 'react-bootstrap';
 
 import { TPost } from '../types';
@@ -12,6 +12,7 @@ type Props = {
 const SearchBar: FC<Props> = ({ posts, searchResults, setSearchResults }) => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [resultVisible, setResultVisible] = useState<boolean>(false);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (searchValue.length) {
@@ -29,6 +30,9 @@ const SearchBar: FC<Props> = ({ posts, searchResults, setSearchResults }) => {
 
   const handleClick = () => {
     setSearchValue('');
+    if (searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
   };
 
   const handleSearchKeyDown = (e: any) => {
@@ -49,6 +53,7 @@ const SearchBar: FC<Props> = ({ posts, searchResults, setSearchResults }) => {
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
               onKeyDown={(e) => handleSearchKeyDown(e)}
+              ref={searchInputRef}
             />
             <Button
               variant="outline-secondary"
