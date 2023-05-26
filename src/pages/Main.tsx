@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Post from '../components/Post';
+import SearchBar from '../components/SearchBar';
 import { fetchPostRequest } from '../store/actions/postActions';
 import { RootState } from '../store/reducers/rootReducer';
 import { TPost, TPostState } from '../types';
@@ -16,6 +17,7 @@ const Main = () => {
 
   return (
     <main>
+      <SearchBar posts={posts} />
       {/* TODO: add Loader component */}
       {!posts.length && pending && <div>Loading...</div>}
       {error && <div>{`error: ${error}`}</div>}
