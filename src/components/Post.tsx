@@ -46,7 +46,7 @@ const Post: FC<TPost> = ({ id, userId, title, body }) => {
       </div>
 
       <button className="mb-3" type="button" onClick={() => toggleComments()}>
-        Comments
+        Комментарии
       </button>
 
       {isCommentsVisible && (
