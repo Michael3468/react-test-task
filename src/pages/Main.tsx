@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Post from '../components/Post';
@@ -10,19 +10,24 @@ import { TPost, TPostState } from '../types';
 const Main = () => {
   const dispatch = useDispatch();
   const { pending, posts, error } = useSelector((state: RootState) => state.posts) as TPostState;
+  const [searchResults, setSearchResults] = useState<TPost[]>([]);
 
   useEffect(() => {
     dispatch(fetchPostRequest());
   }, [dispatch]);
 
+  useEffect(() => {
+    setSearchResults(posts);
+  }, [posts]);
+
   return (
     <main>
-      <SearchBar posts={posts} />
+      <SearchBar posts={posts} searchResults={searchResults} setSearchResults={setSearchResults} />
       {/* TODO: add Loader component */}
       {!posts.length && pending && <div>Loading...</div>}
       {error && <div>{`error: ${error}`}</div>}
 
-      {posts?.map((post: TPost) => (
+      {searchResults?.map((post: TPost) => (
         <Post key={post.id} id={post.id} userId={post.userId} title={post.title} body={post.body} />
       ))}
     </main>
