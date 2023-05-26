@@ -5,22 +5,36 @@ import { TPost } from '../types';
 
 type Props = {
   posts: TPost[];
+  searchResults: TPost[];
+  setSearchResults: (results: TPost[]) => void;
 };
 
-const SearchBar: FC<Props> = ({ posts }) => {
-  const [searchResults, setSearchResults] = useState<TPost[]>(posts);
+const SearchBar: FC<Props> = ({ posts, searchResults, setSearchResults }) => {
   const [searchValue, setSearchValue] = useState<string>('');
+  const [resultVisible, setResultVisible] = useState<boolean>(false);
 
   useEffect(() => {
     if (searchValue.length) {
-      setSearchResults(() => posts.filter((post) => post.title.includes(searchValue)));
+      setSearchResults(posts.filter((post) => post.title.includes(searchValue)));
     } else {
       setSearchResults(posts);
     }
-  }, [posts, searchValue]);
+  }, [posts, searchValue, setSearchResults]);
+
+  useEffect(() => {
+    if (searchValue.length) {
+      setResultVisible(true);
+    }
+  }, [searchValue]);
 
   const handleClick = () => {
     setSearchValue('');
+  };
+
+  const handleSearchKeyDown = (e: any) => {
+    if (e.key === 'Enter' || e.key === 'Escape') {
+      setResultVisible(false);
+    }
   };
 
   return (
@@ -34,20 +48,21 @@ const SearchBar: FC<Props> = ({ posts }) => {
               aria-label="Search"
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
+              onKeyDown={(e) => handleSearchKeyDown(e)}
             />
             <Button
               variant="outline-secondary"
               onClick={handleClick}
               disabled={!searchValue.length}
             >
-              {searchValue.length ? 'X' : '🔎️'}
+              X
             </Button>
           </InputGroup>
 
           {/* search result container */}
-          {searchValue.length > 0 && (
+          {searchValue.length > 0 && resultVisible && (
             <div
-              className="mt-2 shadow-lg me-2"
+              className="mt-2 pt-2 pb-2 shadow-lg me-2 bg-white"
               style={{
                 maxHeight: '250px',
                 maxWidth: '350px',
