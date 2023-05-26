@@ -35,9 +35,25 @@ const SearchBar: FC<Props> = ({ posts, searchResults, setSearchResults }) => {
     }
   };
 
+  // TODO: any
   const handleSearchKeyDown = (e: any) => {
     if (e.key === 'Enter' || e.key === 'Escape') {
       setResultVisible(false);
+    }
+  };
+
+  const setResultsAndHide = (e: any) => {
+    setSearchResults(posts.filter((post) => post.id === Number(e.target.id)));
+    setResultVisible(false);
+  };
+
+  const handlePostClick = (e: any) => {
+    setResultsAndHide(e);
+  };
+
+  const handlePostKeyDown = (e: any) => {
+    if (e.key === 'Enter') {
+      setResultsAndHide(e);
     }
   };
 
@@ -74,14 +90,19 @@ const SearchBar: FC<Props> = ({ posts, searchResults, setSearchResults }) => {
                 overflowY: 'scroll',
                 position: 'absolute',
                 borderRadius: 5,
+                border: '1px solid black',
               }}
             >
               <ul className="ps-0 m-0" tabIndex={-1}>
                 {searchResults.map((post, index) => (
                   <li
                     tabIndex={0}
+                    id={String(post.id)}
                     key={post.id}
                     className={`p-2 ${index % 2 === 0 ? 'bg-secondary' : 'bg-white'}`}
+                    style={{ cursor: 'pointer' }}
+                    onClick={(e) => handlePostClick(e)}
+                    onKeyDown={(e) => handlePostKeyDown(e)}
                   >
                     {post.title}
                   </li>
