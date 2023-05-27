@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import PaginationBar from '../components/PaginationBar';
 import Post from '../components/Post';
 import SearchBar from '../components/SearchBar';
 import SortPostsButton from '../components/SortPostsButton';
@@ -13,6 +14,10 @@ const Main = () => {
   const { pending, posts, error } = useSelector((state: RootState) => state.posts) as TPostState;
   const [searchResults, setSearchResults] = useState<TPost[]>([]);
   const [searchValue, setSearchValue] = useState<string>('');
+  const [activePage, setActivePage] = useState<number>(1);
+  const [startItem, setStartItem] = useState<number>(0);
+  const [endItem, setEndItem] = useState<number>(0);
+  const [itemsOnPage, setItemsOnPage] = useState<number>(0);
 
   useEffect(() => {
     dispatch(fetchPostRequest());
@@ -21,6 +26,11 @@ const Main = () => {
   useEffect(() => {
     setSearchResults(posts);
   }, [posts]);
+
+  useEffect(() => {
+    setStartItem((activePage - 1) * itemsOnPage);
+    setEndItem(activePage * itemsOnPage);
+  }, [activePage, itemsOnPage]);
 
   return (
     <main>
@@ -44,11 +54,19 @@ const Main = () => {
         </div>
       </div>
 
+      <PaginationBar
+        searchResults={searchResults}
+        activePage={activePage}
+        setActivePage={setActivePage}
+        itemsOnPage={10}
+        setItemsOnPage={setItemsOnPage}
+      />
+
       {/* TODO: add Loader component */}
       {!posts.length && pending && <div>Loading...</div>}
       {error && <div>{`error: ${error}`}</div>}
 
-      {searchResults?.map((post: TPost) => (
+      {searchResults?.slice(startItem, endItem).map((post: TPost) => (
         <Post key={post.id} id={post.id} userId={post.userId} title={post.title} body={post.body} />
       ))}
     </main>
