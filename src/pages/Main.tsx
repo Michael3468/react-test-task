@@ -35,7 +35,7 @@ const Main = () => {
   return (
     <main>
       <div className="d-flex flex-row flex-wrap mt-4 mb-4">
-        <div className="col-md mb-sm-3">
+        <div className="col-md mb-sm-0 mb-3">
           <SearchBar
             posts={posts}
             searchResults={searchResults}

@@ -45,7 +45,7 @@ const SortPostsButton: FC<Props> = ({ searchResults, setSearchResults, searchVal
         <Col sm={4}>
           <Dropdown>
             <Dropdown.Toggle variant="success" id="dropdown-basic">
-              Сортировка постов
+              Сортировка
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
