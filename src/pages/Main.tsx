@@ -12,6 +12,7 @@ const Main = () => {
   const dispatch = useDispatch();
   const { pending, posts, error } = useSelector((state: RootState) => state.posts) as TPostState;
   const [searchResults, setSearchResults] = useState<TPost[]>([]);
+  const [searchValue, setSearchValue] = useState<string>('');
 
   useEffect(() => {
     dispatch(fetchPostRequest());
@@ -29,11 +30,17 @@ const Main = () => {
             posts={posts}
             searchResults={searchResults}
             setSearchResults={setSearchResults}
+            searchValue={searchValue}
+            setSearchValue={setSearchValue}
           />
         </div>
 
         <div className="col-md">
-          <SortPostsButton searchResults={searchResults} setSearchResults={setSearchResults} />
+          <SortPostsButton
+            searchResults={searchResults}
+            setSearchResults={setSearchResults}
+            searchValue={searchValue}
+          />
         </div>
       </div>
 

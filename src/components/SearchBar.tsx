@@ -7,10 +7,17 @@ type Props = {
   posts: TPost[];
   searchResults: TPost[];
   setSearchResults: (results: TPost[]) => void;
+  searchValue: string;
+  setSearchValue: (value: string) => void;
 };
 
-const SearchBar: FC<Props> = ({ posts, searchResults, setSearchResults }) => {
-  const [searchValue, setSearchValue] = useState<string>('');
+const SearchBar: FC<Props> = ({
+  posts,
+  searchResults,
+  setSearchResults,
+  searchValue,
+  setSearchValue,
+}) => {
   const [resultVisible, setResultVisible] = useState<boolean>(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
