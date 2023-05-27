@@ -7,10 +7,17 @@ type Props = {
   posts: TPost[];
   searchResults: TPost[];
   setSearchResults: (results: TPost[]) => void;
+  searchValue: string;
+  setSearchValue: (value: string) => void;
 };
 
-const SearchBar: FC<Props> = ({ posts, searchResults, setSearchResults }) => {
-  const [searchValue, setSearchValue] = useState<string>('');
+const SearchBar: FC<Props> = ({
+  posts,
+  searchResults,
+  setSearchResults,
+  searchValue,
+  setSearchValue,
+}) => {
   const [resultVisible, setResultVisible] = useState<boolean>(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
@@ -27,6 +34,12 @@ const SearchBar: FC<Props> = ({ posts, searchResults, setSearchResults }) => {
       setResultVisible(true);
     }
   }, [searchValue]);
+
+  useEffect(() => {
+    if (searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, []);
 
   const handleClick = () => {
     setSearchValue('');
@@ -58,9 +71,9 @@ const SearchBar: FC<Props> = ({ posts, searchResults, setSearchResults }) => {
   };
 
   return (
-    <Container className="mt-4 mb-4" style={{ position: 'relative' }}>
+    <Container style={{ position: 'relative' }}>
       <Row>
-        <Col sm={4}>
+        <Col sm={12}>
           <InputGroup className="d-flex">
             <Form.Control
               type="search"
