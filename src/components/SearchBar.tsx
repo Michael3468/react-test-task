@@ -64,9 +64,9 @@ const SearchBar: FC<Props> = ({ posts, searchResults, setSearchResults }) => {
   };
 
   return (
-    <Container className="mt-4 mb-4" style={{ position: 'relative' }}>
+    <Container style={{ position: 'relative' }}>
       <Row>
-        <Col sm={4}>
+        <Col sm={12}>
           <InputGroup className="d-flex">
             <Form.Control
               type="search"
