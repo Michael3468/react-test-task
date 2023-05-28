@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from 'react';
+import { Dispatch, FC, SetStateAction, useEffect, useRef, useState } from 'react';
 import { Button, Col, Container, Form, InputGroup, Row } from 'react-bootstrap';
 
 import { TPost } from '../types';
@@ -6,9 +6,9 @@ import { TPost } from '../types';
 type Props = {
   posts: TPost[];
   searchResults: TPost[];
-  setSearchResults: (results: TPost[]) => void;
+  setSearchResults: Dispatch<SetStateAction<TPost[]>>;
   searchValue: string;
-  setSearchValue: (value: string) => void;
+  setSearchValue: Dispatch<SetStateAction<string>>;
 };
 
 const SearchBar: FC<Props> = ({
