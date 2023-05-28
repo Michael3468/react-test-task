@@ -1,4 +1,13 @@
-import { Dispatch, FC, SetStateAction, useEffect, useRef, useState } from 'react';
+import {
+  Dispatch,
+  FC,
+  KeyboardEvent,
+  MouseEvent,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { Button, Col, Container, Form, InputGroup, Row } from 'react-bootstrap';
 
 import { TPost } from '../types';
@@ -48,23 +57,22 @@ const SearchBar: FC<Props> = ({
     }
   };
 
-  // TODO: any
-  const handleSearchKeyDown = (e: any) => {
+  const handleSearchKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' || e.key === 'Escape') {
       setResultVisible(false);
     }
   };
 
-  const setResultsAndHide = (e: any) => {
-    setSearchResults(posts.filter((post) => post.id === Number(e.target.id)));
+  const setResultsAndHide = (e: MouseEvent<HTMLLIElement> | KeyboardEvent<HTMLLIElement>) => {
+    setSearchResults(posts.filter((post) => post.id === Number((e.target as HTMLElement).id)));
     setResultVisible(false);
   };
 
-  const handlePostClick = (e: any) => {
+  const handlePostClick = (e: MouseEvent<HTMLLIElement>) => {
     setResultsAndHide(e);
   };
 
-  const handlePostKeyDown = (e: any) => {
+  const handlePostKeyDown = (e: KeyboardEvent<HTMLLIElement>) => {
     if (e.key === 'Enter') {
       setResultsAndHide(e);
     }
@@ -81,7 +89,7 @@ const SearchBar: FC<Props> = ({
               aria-label="Search"
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
-              onKeyDown={(e) => handleSearchKeyDown(e)}
+              onKeyDown={handleSearchKeyDown}
               ref={searchInputRef}
             />
             <Button
@@ -114,8 +122,8 @@ const SearchBar: FC<Props> = ({
                     key={post.id}
                     className={`p-2 ${index % 2 === 0 ? 'bg-secondary' : 'bg-white'}`}
                     style={{ cursor: 'pointer' }}
-                    onClick={(e) => handlePostClick(e)}
-                    onKeyDown={(e) => handlePostKeyDown(e)}
+                    onClick={handlePostClick}
+                    onKeyDown={handlePostKeyDown}
                   >
                     {post.title}
                   </li>
