@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Card } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
 
@@ -51,9 +51,14 @@ const UserInfo = () => {
         </Card>
       )}
 
-      <button type="button" style={{ margin: '20px 0' }} onClick={() => navigate(routes.HOME)}>
+      <Button
+        type="button"
+        variant="success"
+        style={{ margin: '20px 0' }}
+        onClick={() => navigate(routes.HOME)}
+      >
         Go Back
-      </button>
+      </Button>
 
       {postsPending && <div>Loading...</div>}
       {postsError && <div>{`error: ${error}`}</div>}
