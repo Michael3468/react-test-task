@@ -26,7 +26,8 @@ const PaginationBar: FC<Props> = ({
   }, [itemsOnPage, setItemsOnPage]);
 
   const totalItems = searchResults.length;
-  const totalPages = totalItems / itemsOnPage;
+  const pages = Math.floor(totalItems / itemsOnPage);
+  const totalPages = pages > 1 ? pages : 1;
 
   const handlePaginationItemClick: MouseEventHandler<HTMLLIElement> = (e) => {
     setActivePage(Number((e.target as HTMLElement)?.id));
