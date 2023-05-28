@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -33,40 +34,50 @@ const Post: FC<TPost> = ({ id, userId, title, body }) => {
 
   return (
     <article className="mb-5" style={{ border: '1px solid black', borderRadius: 5, padding: 20 }}>
-      <h2>{title}</h2>
       {/* TODO: "img" move to component ? */}
       <div style={{ display: 'flex' }}>
         <img
           src={avatar}
           alt="user image"
           onClick={() => navigate(`${routes.USER_INFO}/${userId}`)}
-          style={{ cursor: 'pointer', width: 50, height: 50, borderRadius: '50%', marginRight: 20 }}
+          style={{
+            cursor: 'pointer',
+            width: 50,
+            height: 50,
+            borderRadius: '50%',
+            marginRight: 20,
+            marginTop: 15,
+          }}
         />
-        <p>{body}</p>
-      </div>
-
-      <button className="mb-3" type="button" onClick={() => toggleComments()}>
-        Комментарии
-      </button>
-
-      {isCommentsVisible && (
         <section>
-          {!postComments.length && pending && <div>Loading...</div>}
-          {/* TODO: add modal for error ? */}
-          {error && <div>{`error: ${error}`}</div>}
+          <h2>{title}</h2>
 
-          {postComments?.map((comment) => (
-            <Comment
-              key={comment.id}
-              id={comment.id}
-              postId={comment.postId}
-              name={comment.name}
-              email={comment.email}
-              body={comment.body}
-            />
-          ))}
+          <p>{body}</p>
+
+          <Button className="mb-3" type="button" variant="success" onClick={() => toggleComments()}>
+            Комментарии
+          </Button>
+
+          {isCommentsVisible && (
+            <section>
+              {!postComments.length && pending && <div>Loading...</div>}
+              {/* TODO: add modal for error ? */}
+              {error && <div>{`error: ${error}`}</div>}
+
+              {postComments?.map((comment) => (
+                <Comment
+                  key={comment.id}
+                  id={comment.id}
+                  postId={comment.postId}
+                  name={comment.name}
+                  email={comment.email}
+                  body={comment.body}
+                />
+              ))}
+            </section>
+          )}
         </section>
-      )}
+      </div>
     </article>
   );
 };

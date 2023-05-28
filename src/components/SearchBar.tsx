@@ -1,4 +1,13 @@
-import { FC, useEffect, useRef, useState } from 'react';
+import {
+  Dispatch,
+  FC,
+  KeyboardEvent,
+  MouseEvent,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { Button, Col, Container, Form, InputGroup, Row } from 'react-bootstrap';
 
 import { TPost } from '../types';
@@ -6,9 +15,10 @@ import { TPost } from '../types';
 type Props = {
   posts: TPost[];
   searchResults: TPost[];
-  setSearchResults: (results: TPost[]) => void;
+  setSearchResults: Dispatch<SetStateAction<TPost[]>>;
   searchValue: string;
-  setSearchValue: (value: string) => void;
+  setSearchValue: Dispatch<SetStateAction<string>>;
+  setActivePage: Dispatch<SetStateAction<number>>;
 };
 
 const SearchBar: FC<Props> = ({
@@ -17,6 +27,7 @@ const SearchBar: FC<Props> = ({
   setSearchResults,
   searchValue,
   setSearchValue,
+  setActivePage,
 }) => {
   const [resultVisible, setResultVisible] = useState<boolean>(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -27,7 +38,8 @@ const SearchBar: FC<Props> = ({
     } else {
       setSearchResults(posts);
     }
-  }, [posts, searchValue, setSearchResults]);
+    setActivePage(1);
+  }, [posts, searchValue, setSearchResults, setActivePage]);
 
   useEffect(() => {
     if (searchValue.length) {
@@ -48,23 +60,22 @@ const SearchBar: FC<Props> = ({
     }
   };
 
-  // TODO: any
-  const handleSearchKeyDown = (e: any) => {
+  const handleSearchKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' || e.key === 'Escape') {
       setResultVisible(false);
     }
   };
 
-  const setResultsAndHide = (e: any) => {
-    setSearchResults(posts.filter((post) => post.id === Number(e.target.id)));
+  const setResultsAndHide = (e: MouseEvent<HTMLLIElement> | KeyboardEvent<HTMLLIElement>) => {
+    setSearchResults(posts.filter((post) => post.id === Number((e.target as HTMLElement).id)));
     setResultVisible(false);
   };
 
-  const handlePostClick = (e: any) => {
+  const handlePostClick = (e: MouseEvent<HTMLLIElement>) => {
     setResultsAndHide(e);
   };
 
-  const handlePostKeyDown = (e: any) => {
+  const handlePostKeyDown = (e: KeyboardEvent<HTMLLIElement>) => {
     if (e.key === 'Enter') {
       setResultsAndHide(e);
     }
@@ -81,7 +92,7 @@ const SearchBar: FC<Props> = ({
               aria-label="Search"
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
-              onKeyDown={(e) => handleSearchKeyDown(e)}
+              onKeyDown={handleSearchKeyDown}
               ref={searchInputRef}
             />
             <Button
@@ -94,7 +105,7 @@ const SearchBar: FC<Props> = ({
           </InputGroup>
 
           {/* search result container */}
-          {searchValue.length > 0 && resultVisible && (
+          {searchValue.length > 0 && resultVisible && searchResults.length > 0 && (
             <div
               className="mt-2 pt-2 pb-2 shadow-lg me-2 bg-white"
               style={{
@@ -104,6 +115,7 @@ const SearchBar: FC<Props> = ({
                 position: 'absolute',
                 borderRadius: 5,
                 border: '1px solid black',
+                zIndex: 5,
               }}
             >
               <ul className="ps-0 m-0" tabIndex={-1}>
@@ -114,8 +126,8 @@ const SearchBar: FC<Props> = ({
                     key={post.id}
                     className={`p-2 ${index % 2 === 0 ? 'bg-secondary' : 'bg-white'}`}
                     style={{ cursor: 'pointer' }}
-                    onClick={(e) => handlePostClick(e)}
-                    onKeyDown={(e) => handlePostKeyDown(e)}
+                    onClick={handlePostClick}
+                    onKeyDown={handlePostKeyDown}
                   >
                     {post.title}
                   </li>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import PaginationBar from '../components/PaginationBar';
 import Post from '../components/Post';
 import SearchBar from '../components/SearchBar';
 import SortPostsButton from '../components/SortPostsButton';
@@ -13,6 +14,10 @@ const Main = () => {
   const { pending, posts, error } = useSelector((state: RootState) => state.posts) as TPostState;
   const [searchResults, setSearchResults] = useState<TPost[]>([]);
   const [searchValue, setSearchValue] = useState<string>('');
+  const [activePage, setActivePage] = useState<number>(1);
+  const [startItem, setStartItem] = useState<number>(0);
+  const [endItem, setEndItem] = useState<number>(0);
+  const [itemsOnPage, setItemsOnPage] = useState<number>(0);
 
   useEffect(() => {
     dispatch(fetchPostRequest());
@@ -22,16 +27,22 @@ const Main = () => {
     setSearchResults(posts);
   }, [posts]);
 
+  useEffect(() => {
+    setStartItem((activePage - 1) * itemsOnPage);
+    setEndItem(activePage * itemsOnPage);
+  }, [activePage, itemsOnPage]);
+
   return (
     <main>
       <div className="d-flex flex-row flex-wrap mt-4 mb-4">
-        <div className="col-md mb-sm-3">
+        <div className="col-md mb-sm-0 mb-3">
           <SearchBar
             posts={posts}
             searchResults={searchResults}
             setSearchResults={setSearchResults}
             searchValue={searchValue}
             setSearchValue={setSearchValue}
+            setActivePage={setActivePage}
           />
         </div>
 
@@ -44,11 +55,19 @@ const Main = () => {
         </div>
       </div>
 
+      <PaginationBar
+        searchResults={searchResults}
+        activePage={activePage}
+        setActivePage={setActivePage}
+        itemsOnPage={10}
+        setItemsOnPage={setItemsOnPage}
+      />
+
       {/* TODO: add Loader component */}
       {!posts.length && pending && <div>Loading...</div>}
       {error && <div>{`error: ${error}`}</div>}
 
-      {searchResults?.map((post: TPost) => (
+      {searchResults?.slice(startItem, endItem).map((post: TPost) => (
         <Post key={post.id} id={post.id} userId={post.userId} title={post.title} body={post.body} />
       ))}
     </main>
