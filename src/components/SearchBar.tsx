@@ -102,7 +102,7 @@ const SearchBar: FC<Props> = ({
           </InputGroup>
 
           {/* search result container */}
-          {searchValue.length > 0 && resultVisible && (
+          {searchValue.length > 0 && resultVisible && searchResults.length > 0 && (
             <div
               className="mt-2 pt-2 pb-2 shadow-lg me-2 bg-white"
               style={{
@@ -112,6 +112,7 @@ const SearchBar: FC<Props> = ({
                 position: 'absolute',
                 borderRadius: 5,
                 border: '1px solid black',
+                zIndex: 5,
               }}
             >
               <ul className="ps-0 m-0" tabIndex={-1}>
