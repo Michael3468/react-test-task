@@ -18,6 +18,7 @@ type Props = {
   setSearchResults: Dispatch<SetStateAction<TPost[]>>;
   searchValue: string;
   setSearchValue: Dispatch<SetStateAction<string>>;
+  setActivePage: Dispatch<SetStateAction<number>>;
 };
 
 const SearchBar: FC<Props> = ({
@@ -26,6 +27,7 @@ const SearchBar: FC<Props> = ({
   setSearchResults,
   searchValue,
   setSearchValue,
+  setActivePage,
 }) => {
   const [resultVisible, setResultVisible] = useState<boolean>(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -36,7 +38,8 @@ const SearchBar: FC<Props> = ({
     } else {
       setSearchResults(posts);
     }
-  }, [posts, searchValue, setSearchResults]);
+    setActivePage(1);
+  }, [posts, searchValue, setSearchResults, setActivePage]);
 
   useEffect(() => {
     if (searchValue.length) {

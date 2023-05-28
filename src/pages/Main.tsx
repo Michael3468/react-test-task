@@ -42,6 +42,7 @@ const Main = () => {
             setSearchResults={setSearchResults}
             searchValue={searchValue}
             setSearchValue={setSearchValue}
+            setActivePage={setActivePage}
           />
         </div>
 
