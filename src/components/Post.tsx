@@ -48,7 +48,7 @@ const Post: FC<TPost> = ({ id, userId, title, body }) => {
           }}
         />
         <section>
-          <h2>{title}</h2>
+          <h2 className="text-center">{title}</h2>
 
           <p>{body}</p>
 
