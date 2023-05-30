@@ -1,4 +1,4 @@
-import { CommentsTypes } from '../../constants';
+import { commentsTypes } from '../../constants';
 import {
   TFetchCommentsFailure,
   TFetchCommentsFailurePayload,
@@ -7,21 +7,19 @@ import {
   TFetchCommentsSuccessPayload,
 } from '../../types';
 
-export const fetchCommentsRequest = (id: number): TFetchCommentsRequest => ({
-  type: CommentsTypes.FETCH_COMMENTS_REQUEST,
+const fetchCommentsRequest = (id: number): TFetchCommentsRequest => ({
+  type: commentsTypes.FETCH_COMMENTS_REQUEST,
   id,
 });
 
-export const fetchCommentsSuccess = (
-  payload: TFetchCommentsSuccessPayload,
-): TFetchCommentsSuccess => ({
-  type: CommentsTypes.FETCH_COMMENTS_SUCCESS,
+const fetchCommentsSuccess = (payload: TFetchCommentsSuccessPayload): TFetchCommentsSuccess => ({
+  type: commentsTypes.FETCH_COMMENTS_SUCCESS,
   payload,
 });
 
-export const fetchCommentsFailure = (
-  payload: TFetchCommentsFailurePayload,
-): TFetchCommentsFailure => ({
-  type: CommentsTypes.FETCH_COMMENTS_FAILURE,
+const fetchCommentsFailure = (payload: TFetchCommentsFailurePayload): TFetchCommentsFailure => ({
+  type: commentsTypes.FETCH_COMMENTS_FAILURE,
   payload,
 });
+
+export { fetchCommentsRequest, fetchCommentsSuccess, fetchCommentsFailure };

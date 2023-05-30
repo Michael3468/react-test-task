@@ -3,12 +3,12 @@ import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import { Comment, Error, Loader } from '.';
 import { avatar } from '../assets';
 import { routes } from '../constants';
 import { fetchCommentsRequest } from '../store/actions/commentsActions';
 import { RootState } from '../store/reducers/rootReducer';
 import { TComment, TCommentState, TPost } from '../types';
-import Comment from './Comment';
 
 const Post: FC<TPost> = ({ id, userId, title, body }) => {
   const dispatch = useDispatch();
@@ -60,9 +60,8 @@ const Post: FC<TPost> = ({ id, userId, title, body }) => {
 
           {isCommentsVisible && (
             <section>
-              {!postComments.length && pending && <div>Loading...</div>}
-              {/* TODO: add modal for error ? */}
-              {error && <div>{`error: ${error}`}</div>}
+              {!postComments.length && pending && <Loader loaderType="comment" />}
+              {error && <Error error={error} />}
 
               {postComments?.map((comment) => (
                 <Comment

@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import PaginationBar from '../components/PaginationBar';
-import Post from '../components/Post';
-import SearchBar from '../components/SearchBar';
-import SortPostsButton from '../components/SortPostsButton';
+import { Error, Loader, PaginationBar, Post, SearchBar, SortPostsButton } from '../components';
 import { fetchPostRequest } from '../store/actions/postActions';
 import { RootState } from '../store/reducers/rootReducer';
 import { TPost, TPostState } from '../types';
@@ -63,9 +60,8 @@ const Main = () => {
         setItemsOnPage={setItemsOnPage}
       />
 
-      {/* TODO: add Loader component */}
-      {!posts.length && pending && <div>Loading...</div>}
-      {error && <div>{`error: ${error}`}</div>}
+      {!posts.length && pending && <Loader />}
+      {error && <Error error={error} />}
 
       {searchResults?.slice(startItem, endItem).map((post: TPost) => (
         <Post key={post.id} id={post.id} userId={post.userId} title={post.title} body={post.body} />

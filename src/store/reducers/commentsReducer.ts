@@ -1,4 +1,4 @@
-import { CommentsTypes } from '../../constants';
+import { commentsTypes } from '../../constants';
 import { TCommentState, TCommentActions } from '../../types';
 
 const initialState: TCommentState = {
@@ -12,7 +12,7 @@ const initialState: TCommentState = {
 
 export default (state = initialState, action: TCommentActions = { type: '' }) => {
   switch (action.type) {
-    case CommentsTypes.FETCH_COMMENTS_REQUEST:
+    case commentsTypes.FETCH_COMMENTS_REQUEST:
       return {
         ...state,
         comments: {
@@ -21,14 +21,14 @@ export default (state = initialState, action: TCommentActions = { type: '' }) =>
         },
         pending: true,
       };
-    case CommentsTypes.FETCH_COMMENTS_SUCCESS:
+    case commentsTypes.FETCH_COMMENTS_SUCCESS:
       return {
         ...state,
         pending: false,
         comments: action.payload?.comments ?? [],
         error: null,
       };
-    case CommentsTypes.FETCH_COMMENTS_FAILURE:
+    case commentsTypes.FETCH_COMMENTS_FAILURE:
       return {
         ...state,
         pending: false,

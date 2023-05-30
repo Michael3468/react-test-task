@@ -1,7 +1,7 @@
 import { Dispatch, FC, MouseEventHandler, SetStateAction, useEffect } from 'react';
 import Pagination from 'react-bootstrap/Pagination';
 
-import { useScreenSize } from '../libs/hooks/useScreenSize';
+import { useScreenSize } from '../libs/hooks';
 import { TPost } from '../types';
 
 type Props = {

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { all, call, delay, put, takeLatest } from 'redux-saga/effects';
 
-import { CommentsTypes } from '../../constants';
+import { commentsTypes } from '../../constants';
 import { fetchCommentsFailure, fetchCommentsSuccess } from '../actions/commentsActions';
 
 const getComments = (id) => axios.get(`https://jsonplaceholder.typicode.com/comments?postId=${id}`);
@@ -19,7 +19,7 @@ function* fetchCommentsSaga(action) {
 
 function* commentsSaga() {
   yield all([
-    takeLatest(CommentsTypes.FETCH_COMMENTS_REQUEST, (action) => fetchCommentsSaga(action)),
+    takeLatest(commentsTypes.FETCH_COMMENTS_REQUEST, (action) => fetchCommentsSaga(action)),
   ]);
 }
 
