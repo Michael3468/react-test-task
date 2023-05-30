@@ -35,18 +35,16 @@ const Post: FC<TPost> = ({ id, userId, title, body }) => {
   return (
     <article className="mb-5" style={{ border: '1px solid black', borderRadius: 5, padding: 20 }}>
       {/* TODO: "img" move to component ? */}
-      <div style={{ display: 'flex' }}>
+      <div className="d-flex flex-column flex-sm-row">
         <img
           src={avatar}
+          className="mx-auto my-2 me-sm-3 rounded-circle"
           alt="user image"
           onClick={() => navigate(`${routes.USER_INFO}/${userId}`)}
           style={{
             cursor: 'pointer',
             width: 50,
             height: 50,
-            borderRadius: '50%',
-            marginRight: 20,
-            marginTop: 15,
           }}
         />
         <section>
