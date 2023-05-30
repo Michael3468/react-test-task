@@ -7,17 +7,19 @@ import {
   TFetchPostSuccessPayload,
 } from '../../types';
 
-export const fetchPostRequest = (userId: string | null = null): TFetchPostRequest => ({
+const fetchPostRequest = (userId: string | null = null): TFetchPostRequest => ({
   type: PostsTypes.FETCH_POSTS_REQUEST,
   userId,
 });
 
-export const fetchPostSuccess = (payload: TFetchPostSuccessPayload): TFetchPostSuccess => ({
+const fetchPostSuccess = (payload: TFetchPostSuccessPayload): TFetchPostSuccess => ({
   type: PostsTypes.FETCH_POSTS_SUCCESS,
   payload,
 });
 
-export const fetchPostFailure = (payload: TFetchPostFailurePayload): TFetchPostFailure => ({
+const fetchPostFailure = (payload: TFetchPostFailurePayload): TFetchPostFailure => ({
   type: PostsTypes.FETCH_POSTS_FAILURE,
   payload,
 });
+
+export { fetchPostRequest, fetchPostSuccess, fetchPostFailure };
