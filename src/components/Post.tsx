@@ -3,13 +3,12 @@ import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import { Comment, Loader } from '.';
 import { avatar } from '../assets';
 import { routes } from '../constants';
 import { fetchCommentsRequest } from '../store/actions/commentsActions';
 import { RootState } from '../store/reducers/rootReducer';
 import { TComment, TCommentState, TPost } from '../types';
-import Comment from './Comment';
-import Loader from './Loader';
 
 const Post: FC<TPost> = ({ id, userId, title, body }) => {
   const dispatch = useDispatch();

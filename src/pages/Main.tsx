@@ -1,12 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-// TODO: re-export components from /components/index.ts
-import Loader from '../components/Loader';
-import PaginationBar from '../components/PaginationBar';
-import Post from '../components/Post';
-import SearchBar from '../components/SearchBar';
-import SortPostsButton from '../components/SortPostsButton';
+import { Loader, PaginationBar, Post, SearchBar, SortPostsButton } from '../components';
 import { fetchPostRequest } from '../store/actions/postActions';
 import { RootState } from '../store/reducers/rootReducer';
 import { TPost, TPostState } from '../types';

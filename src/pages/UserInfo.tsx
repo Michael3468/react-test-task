@@ -3,8 +3,7 @@ import { Button, Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
 
-import Loader from '../components/Loader';
-import Post from '../components/Post';
+import { Loader, Post } from '../components';
 import { routes } from '../constants';
 import { fetchPostRequest } from '../store/actions/postActions';
 import { fetchUserInfoRequest } from '../store/actions/userInfoActions';

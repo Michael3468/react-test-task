@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 import Container from 'react-bootstrap/Container';
 
-import Header from './Header';
+import { Header } from '.';
 
 type Props = {
   children: ReactNode;
