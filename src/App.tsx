@@ -2,9 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { Layout } from './components';
 import { routes } from './constants';
-import AboutMe from './pages/AboutMe';
-import Main from './pages/Main';
-import UserInfo from './pages/UserInfo';
+import { AboutMe, Main, UserInfo } from './pages';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
