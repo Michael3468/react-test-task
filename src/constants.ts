@@ -27,4 +27,12 @@ const aboutMe = {
   email: 'mikhail3468@yandex.ru',
 };
 
-export { routes, PostsTypes, CommentsTypes, UserInfoTypes, aboutMe };
+const expandVariants = {
+  false: false,
+  sm: 'sm',
+  md: 'md',
+  lg: 'lg',
+  xl: 'xl',
+  xxl: 'xxl',
+};
+export { routes, PostsTypes, CommentsTypes, UserInfoTypes, aboutMe, expandVariants };

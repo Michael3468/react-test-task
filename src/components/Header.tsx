@@ -5,11 +5,10 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Link } from 'react-router-dom';
 
 import { avatar } from '../assets';
-import { aboutMe, routes } from '../constants';
+import { aboutMe, routes, expandVariants } from '../constants';
 
 const Header = () => {
-  // expand variants - false, 'sm', 'md', 'lg', 'xl', 'xxl'
-  const expand = 'md';
+  const expand = expandVariants.md;
   const padding = 10;
   const styles = {
     display: 'flex',
