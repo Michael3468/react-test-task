@@ -3,6 +3,7 @@ import { Button, Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
 
+import Loader from '../components/Loader';
 import Post from '../components/Post';
 import { routes } from '../constants';
 import { fetchPostRequest } from '../store/actions/postActions';
@@ -36,7 +37,7 @@ const UserInfo = () => {
 
   return (
     <>
-      {pending && <div>Loading...</div>}
+      {pending && <Loader loaderType="three-dots" />}
       {error && <div>{`error: ${error}`}</div>}
       {userInfo && (
         <Card style={{ padding: 20, maxWidth: 320 }}>
@@ -60,7 +61,7 @@ const UserInfo = () => {
         Go Back
       </Button>
 
-      {postsPending && <div>Loading...</div>}
+      {postsPending && <Loader />}
       {postsError && <div>{`error: ${error}`}</div>}
       {!postsPending &&
         !postsError &&

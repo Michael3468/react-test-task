@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+// TODO: re-export components from /components/index.ts
+import Loader from '../components/Loader';
 import PaginationBar from '../components/PaginationBar';
 import Post from '../components/Post';
 import SearchBar from '../components/SearchBar';
@@ -63,8 +65,7 @@ const Main = () => {
         setItemsOnPage={setItemsOnPage}
       />
 
-      {/* TODO: add Loader component */}
-      {!posts.length && pending && <div>Loading...</div>}
+      {!posts.length && pending && <Loader />}
       {error && <div>{`error: ${error}`}</div>}
 
       {searchResults?.slice(startItem, endItem).map((post: TPost) => (

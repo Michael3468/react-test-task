@@ -9,6 +9,7 @@ import { fetchCommentsRequest } from '../store/actions/commentsActions';
 import { RootState } from '../store/reducers/rootReducer';
 import { TComment, TCommentState, TPost } from '../types';
 import Comment from './Comment';
+import Loader from './Loader';
 
 const Post: FC<TPost> = ({ id, userId, title, body }) => {
   const dispatch = useDispatch();
@@ -60,7 +61,7 @@ const Post: FC<TPost> = ({ id, userId, title, body }) => {
 
           {isCommentsVisible && (
             <section>
-              {!postComments.length && pending && <div>Loading...</div>}
+              {!postComments.length && pending && <Loader loaderType="comment" />}
               {/* TODO: add modal for error ? */}
               {error && <div>{`error: ${error}`}</div>}
 
