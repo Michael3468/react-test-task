@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { Comment, Loader } from '.';
+import { Comment, Error, Loader } from '.';
 import { avatar } from '../assets';
 import { routes } from '../constants';
 import { fetchCommentsRequest } from '../store/actions/commentsActions';
@@ -61,8 +61,7 @@ const Post: FC<TPost> = ({ id, userId, title, body }) => {
           {isCommentsVisible && (
             <section>
               {!postComments.length && pending && <Loader loaderType="comment" />}
-              {/* TODO: add modal for error ? */}
-              {error && <div>{`error: ${error}`}</div>}
+              {error && <Error error={error} />}
 
               {postComments?.map((comment) => (
                 <Comment

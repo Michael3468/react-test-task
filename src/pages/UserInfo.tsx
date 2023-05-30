@@ -3,7 +3,7 @@ import { Button, Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
 
-import { Loader, Post } from '../components';
+import { Error, Loader, Post } from '../components';
 import { routes } from '../constants';
 import { fetchPostRequest } from '../store/actions/postActions';
 import { fetchUserInfoRequest } from '../store/actions/userInfoActions';
@@ -37,7 +37,7 @@ const UserInfo = () => {
   return (
     <>
       {pending && <Loader loaderType="three-dots" />}
-      {error && <div>{`error: ${error}`}</div>}
+      {error && <Error error={error} />}
       {userInfo && (
         <Card style={{ padding: 20, maxWidth: 320 }}>
           <span style={{ fontWeight: 'bold', fontSize: 22 }}>User Info:</span>
@@ -61,7 +61,7 @@ const UserInfo = () => {
       </Button>
 
       {postsPending && <Loader />}
-      {postsError && <div>{`error: ${error}`}</div>}
+      {postsError && <Error error={error} />}
       {!postsPending &&
         !postsError &&
         posts?.map((post: TPost) => (
