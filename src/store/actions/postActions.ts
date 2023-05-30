@@ -1,4 +1,4 @@
-import { PostsTypes } from '../../constants';
+import { postsTypes } from '../../constants';
 import {
   TFetchPostFailure,
   TFetchPostFailurePayload,
@@ -8,17 +8,17 @@ import {
 } from '../../types';
 
 const fetchPostRequest = (userId: string | null = null): TFetchPostRequest => ({
-  type: PostsTypes.FETCH_POSTS_REQUEST,
+  type: postsTypes.FETCH_POSTS_REQUEST,
   userId,
 });
 
 const fetchPostSuccess = (payload: TFetchPostSuccessPayload): TFetchPostSuccess => ({
-  type: PostsTypes.FETCH_POSTS_SUCCESS,
+  type: postsTypes.FETCH_POSTS_SUCCESS,
   payload,
 });
 
 const fetchPostFailure = (payload: TFetchPostFailurePayload): TFetchPostFailure => ({
-  type: PostsTypes.FETCH_POSTS_FAILURE,
+  type: postsTypes.FETCH_POSTS_FAILURE,
   payload,
 });
 

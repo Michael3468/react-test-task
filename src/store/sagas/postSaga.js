@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { all, call, delay, put, takeLatest } from 'redux-saga/effects';
 
-import { PostsTypes } from '../../constants';
+import { postsTypes } from '../../constants';
 import { fetchPostFailure, fetchPostSuccess } from '../actions/postActions';
 
-const getPosts = (id) => (id
-  ? axios.get(`https://jsonplaceholder.typicode.com/users/${id}/posts`)
-  : axios.get('https://jsonplaceholder.typicode.com/posts'));
+const getPosts = (id) =>
+  (id
+    ? axios.get(`https://jsonplaceholder.typicode.com/users/${id}/posts`)
+    : axios.get('https://jsonplaceholder.typicode.com/posts'));
 
 function* fetchPostsSaga(action) {
   try {
@@ -19,7 +20,7 @@ function* fetchPostsSaga(action) {
 }
 
 function* postsSaga() {
-  yield all([takeLatest(PostsTypes.FETCH_POSTS_REQUEST, (action) => fetchPostsSaga(action))]);
+  yield all([takeLatest(postsTypes.FETCH_POSTS_REQUEST, (action) => fetchPostsSaga(action))]);
 }
 
 export default postsSaga;

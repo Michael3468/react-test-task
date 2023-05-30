@@ -1,4 +1,4 @@
-import { PostsTypes } from '../../constants';
+import { postsTypes } from '../../constants';
 import { TPostState, TPostActions } from '../../types';
 
 const initialState: TPostState = {
@@ -9,19 +9,19 @@ const initialState: TPostState = {
 
 export default (state = initialState, action: TPostActions = { type: '' }) => {
   switch (action.type) {
-    case PostsTypes.FETCH_POSTS_REQUEST:
+    case postsTypes.FETCH_POSTS_REQUEST:
       return {
         ...state,
         pending: true,
       };
-    case PostsTypes.FETCH_POSTS_SUCCESS:
+    case postsTypes.FETCH_POSTS_SUCCESS:
       return {
         ...state,
         pending: false,
         posts: action.payload?.posts ?? [],
         error: null,
       };
-    case PostsTypes.FETCH_POSTS_FAILURE:
+    case postsTypes.FETCH_POSTS_FAILURE:
       return {
         ...state,
         pending: false,

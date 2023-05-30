@@ -1,4 +1,4 @@
-import { CommentsTypes, PostsTypes, UserInfoTypes } from './constants';
+import { commentsTypes, postsTypes, userInfoTypes } from './constants';
 
 type TComment = {
   postId: number;
@@ -86,7 +86,7 @@ type TUserInfoActions = {
 
 // Fetch Posts
 type TFetchPostRequest = {
-  type: typeof PostsTypes.FETCH_POSTS_REQUEST;
+  type: typeof postsTypes.FETCH_POSTS_REQUEST;
   userId?: string | null;
 };
 
@@ -99,18 +99,18 @@ type TFetchPostFailurePayload = {
 };
 
 type TFetchPostSuccess = {
-  type: typeof PostsTypes.FETCH_POSTS_SUCCESS;
+  type: typeof postsTypes.FETCH_POSTS_SUCCESS;
   payload: TFetchPostSuccessPayload;
 };
 
 type TFetchPostFailure = {
-  type: typeof PostsTypes.FETCH_POSTS_FAILURE;
+  type: typeof postsTypes.FETCH_POSTS_FAILURE;
   payload: TFetchPostFailurePayload;
 };
 
 // Fetch Comments
 type TFetchCommentsRequest = {
-  type: typeof CommentsTypes.FETCH_COMMENTS_REQUEST;
+  type: typeof commentsTypes.FETCH_COMMENTS_REQUEST;
   id: number;
 };
 
@@ -123,18 +123,18 @@ type TFetchCommentsFailurePayload = {
 };
 
 type TFetchCommentsSuccess = {
-  type: typeof CommentsTypes.FETCH_COMMENTS_SUCCESS;
+  type: typeof commentsTypes.FETCH_COMMENTS_SUCCESS;
   payload: TFetchCommentsSuccessPayload;
 };
 
 type TFetchCommentsFailure = {
-  type: typeof CommentsTypes.FETCH_COMMENTS_FAILURE;
+  type: typeof commentsTypes.FETCH_COMMENTS_FAILURE;
   payload: TFetchCommentsFailurePayload;
 };
 
 // Fetch UserInfo
 type TFetchUserInfoRequest = {
-  type: typeof UserInfoTypes.FETCH_USER_INFO_REQUEST;
+  type: typeof userInfoTypes.FETCH_USER_INFO_REQUEST;
   userId: string;
 };
 
@@ -147,12 +147,12 @@ type TFetchUserInfoFailurePayload = {
 };
 
 type TFetchUserInfoSuccess = {
-  type: typeof UserInfoTypes.FETCH_USER_INFO_SUCCESS;
+  type: typeof userInfoTypes.FETCH_USER_INFO_SUCCESS;
   payload: TFetchUserInfoSuccessPayload;
 };
 
 type TFetchUserInfoFailure = {
-  type: typeof UserInfoTypes.FETCH_USER_INFO_FAILURE;
+  type: typeof userInfoTypes.FETCH_USER_INFO_FAILURE;
   payload: TFetchCommentsFailurePayload;
 };
 

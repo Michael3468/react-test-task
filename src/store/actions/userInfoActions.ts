@@ -1,4 +1,4 @@
-import { UserInfoTypes } from '../../constants';
+import { userInfoTypes } from '../../constants';
 import {
   TFetchUserInfoFailure,
   TFetchUserInfoFailurePayload,
@@ -8,17 +8,17 @@ import {
 } from '../../types';
 
 const fetchUserInfoRequest = (userId: string): TFetchUserInfoRequest => ({
-  type: UserInfoTypes.FETCH_USER_INFO_REQUEST,
+  type: userInfoTypes.FETCH_USER_INFO_REQUEST,
   userId,
 });
 
 const fetchUserInfoSuccess = (payload: TFetchUserInfoSuccessPayload): TFetchUserInfoSuccess => ({
-  type: UserInfoTypes.FETCH_USER_INFO_SUCCESS,
+  type: userInfoTypes.FETCH_USER_INFO_SUCCESS,
   payload,
 });
 
 const fetchUserInfoFailure = (payload: TFetchUserInfoFailurePayload): TFetchUserInfoFailure => ({
-  type: UserInfoTypes.FETCH_USER_INFO_FAILURE,
+  type: userInfoTypes.FETCH_USER_INFO_FAILURE,
   payload,
 });
 
