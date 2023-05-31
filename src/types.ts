@@ -115,7 +115,10 @@ type TFetchCommentsRequest = {
 };
 
 type TFetchCommentsSuccessPayload = {
-  data: TComment[];
+  comments: {
+    data: TComment[];
+    postId: number;
+  };
 };
 
 type TFetchCommentsFailurePayload = {
