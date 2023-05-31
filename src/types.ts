@@ -87,7 +87,7 @@ type TUserInfoActions = {
 // Fetch Posts
 type TFetchPostRequest = {
   type: typeof postsTypes.FETCH_POSTS_REQUEST;
-  userId?: string | null;
+  userId?: number;
 };
 
 type TFetchPostSuccessPayload = {
@@ -115,7 +115,10 @@ type TFetchCommentsRequest = {
 };
 
 type TFetchCommentsSuccessPayload = {
-  data: TComment[];
+  comments: {
+    data: TComment[];
+    postId: number;
+  };
 };
 
 type TFetchCommentsFailurePayload = {
@@ -135,11 +138,11 @@ type TFetchCommentsFailure = {
 // Fetch UserInfo
 type TFetchUserInfoRequest = {
   type: typeof userInfoTypes.FETCH_USER_INFO_REQUEST;
-  userId: string;
+  userId: number;
 };
 
 type TFetchUserInfoSuccessPayload = {
-  data: TUserInfo;
+  user: TUserInfo;
 };
 
 type TFetchUserInfoFailurePayload = {
