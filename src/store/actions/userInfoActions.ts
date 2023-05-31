@@ -7,7 +7,7 @@ import {
   TFetchUserInfoSuccessPayload,
 } from '../../types';
 
-const fetchUserInfoRequest = (userId: string): TFetchUserInfoRequest => ({
+const fetchUserInfoRequest = (userId: number): TFetchUserInfoRequest => ({
   type: userInfoTypes.FETCH_USER_INFO_REQUEST,
   userId,
 });

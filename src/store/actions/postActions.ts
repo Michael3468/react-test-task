@@ -7,7 +7,7 @@ import {
   TFetchPostSuccessPayload,
 } from '../../types';
 
-const fetchPostRequest = (userId: string | null = null): TFetchPostRequest => ({
+const fetchPostRequest = (userId?: number): TFetchPostRequest => ({
   type: postsTypes.FETCH_POSTS_REQUEST,
   userId,
 });

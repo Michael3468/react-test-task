@@ -25,8 +25,8 @@ const UserInfo = () => {
 
   useEffect(() => {
     if (id) {
-      dispatch(fetchUserInfoRequest(id));
-      dispatch(fetchPostRequest(id));
+      dispatch(fetchUserInfoRequest(Number(id)));
+      dispatch(fetchPostRequest(Number(id)));
     }
   }, [dispatch, id]);
 
