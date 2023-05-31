@@ -51,7 +51,6 @@ const Header = () => {
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1">
-              {/* TODO: map */}
               <Link
                 to={routes.HOME}
                 onClick={handleClick}
@@ -66,7 +65,6 @@ const Header = () => {
               >
                 Обо мне
               </Link>
-              {/* TODO: userInfo component */}
               <div style={{ ...styles, display: 'flex', alignItems: 'center' }}>
                 <img
                   src={avatar}
