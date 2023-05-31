@@ -3,7 +3,7 @@
 ## Install
 
 ```
-git clone https://github.com/WhiteDevilMan/react-test-task
+git clone https://github.com/WhiteDevilMan/react-test-task.git
 
 cd react-test-task
 
