@@ -138,11 +138,11 @@ type TFetchCommentsFailure = {
 // Fetch UserInfo
 type TFetchUserInfoRequest = {
   type: typeof userInfoTypes.FETCH_USER_INFO_REQUEST;
-  userId: string;
+  userId: number;
 };
 
 type TFetchUserInfoSuccessPayload = {
-  data: TUserInfo;
+  user: TUserInfo;
 };
 
 type TFetchUserInfoFailurePayload = {
