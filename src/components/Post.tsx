@@ -13,7 +13,6 @@ import { TComment, TCommentState, TPost } from '../types';
 const Post: FC<TPost> = ({ id, userId, title, body }) => {
   const dispatch = useDispatch();
   const [isCommentsVisible, setIsCommentsVisible] = useState<boolean>(false);
-  // TODO: change useSelector to useTypedSelector
   const { pending, comments, error } = useSelector(
     (state: RootState) => state.comments,
   ) as TCommentState;
@@ -34,11 +33,10 @@ const Post: FC<TPost> = ({ id, userId, title, body }) => {
 
   return (
     <article className="mb-5" style={{ border: '1px solid black', borderRadius: 5, padding: 20 }}>
-      {/* TODO: "img" move to component ? */}
       <div className="d-flex flex-column flex-sm-row">
         <img
           src={avatar}
-          className="mx-auto my-2 me-sm-3 rounded-circle"
+          className="mx-auto my-2 ms-sm-0 me-sm-3 rounded-circle"
           alt="user image"
           onClick={() => navigate(`${routes.USER_INFO}/${userId}`)}
           style={{
