@@ -38,7 +38,7 @@ const Post: FC<TPost> = ({ id, userId, title, body }) => {
       <div className="d-flex flex-column flex-sm-row">
         <img
           src={avatar}
-          className="mx-auto my-2 me-sm-3 rounded-circle"
+          className="mx-auto my-2 ms-sm-0 me-sm-3 rounded-circle"
           alt="user image"
           onClick={() => navigate(`${routes.USER_INFO}/${userId}`)}
           style={{
